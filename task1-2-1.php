@@ -8,15 +8,11 @@
 <body>
   
 <?php
-  $message = '暑中見舞い';
-  define('TITLE','申し上げます。')
-  ?>
+define('TAX',1.1);//消費税
+$enpitu =100;
+$kesigomu =200;
 
-<p>
-  <?= $message; ?><?= TITLE; ?>
-</p>
-<?= $message; ?>
-<br><?= TITLE; ?>
-
+echo "現在、消費税は10%です。"
+echo "鉛筆が",$enpitu,円で税込,$enpitu*TAX,円です。
 </body>
 </html>
