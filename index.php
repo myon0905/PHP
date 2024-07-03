@@ -12,7 +12,7 @@
   $message = '今日の日付:' . date('Y/m/d');
   define('TITLE','定数とは')
   ?>
-
+<a href="Homepage-01">ホームページ</a>
 
   <h1>Hello PHP World!</h1>
 
