@@ -3,7 +3,7 @@
 function show_top($heading = "社員一覧")
 {
   echo <<<TOP
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -13,7 +13,7 @@ function show_top($heading = "社員一覧")
 </head>
 <body>
   <h1>{$heading}</h1>
-  TOP;
+TOP;
 }
 
 function show_down($return = false)
@@ -48,5 +48,71 @@ TABLE2;
     </table>
     <button><a href="syain_create.php">社員情報の追加</a></button>
 TABLE3;
+}
+
+function show_form($id, $name, $age, $work, $old_id, $status, $button)
+{
+  $error = "";
+  $error = get_error();
+  echo <<<FORM
+  <form action="post_data.php" method="post">
+    <p>社員番号</p>
+    <input type="text" name="id" placeholder="例）10001" value="{$id}">
+    <p>名前</p>
+    <input type="text" name="name" placeholder="例）中野 孝" value="{$name}">
+    <p>年齢</p>
+    <input type="text" name="age" placeholder="例）35" value="{$age}">
+    <p>勤務形態</p>
+    <input type="text" name="work" placeholder="例）社員" value="{$work}">
+    <p class="red">{$error}</p>
+    <input type="hidden" name="old_id" value="{$old_id}">
+    <input type="hidden" name="status" value="{$status}">
+    <input type="submit" name="button" value="{$button}">
+    </form>
+FORM;
+}
+
+function show_create()
+{
+  $error = get_error();
+  show_form("","","","","","create","登録");
+}
+
+function show_syain($member)
+{
+  echo <<<SYAIN1
+  <table>
+    <tr>
+      <th>社員番号</th>
+      <th>名前</th>
+      <th>年齢</th>
+      <th>労働形態</th>
+    </tr>
+    <tr>
+SYAIN1;
+    echo <<<SYAIN2
+      <td>{$member["id"]}</td>
+      <td>{$member["name"]}</td>
+      <td>{$member["age"]}</td>
+      <td>{$member["work"]}</td>
+    </tr>
+    </table>
+SYAIN2;
+    echo <<<SYAIN3
+    <p><a href="syain_update.php?id={$member[id]}">社員情報の更新</a></p>
+    <p><a href="syain_delete.php?id={$member[id]}">社員情報の削除</a></p>
+SYAIN3;
+}
+
+function show_update($member)
+{
+  $error = get_error();
+  show_form($member["id"], $member["name"], $member["age"], $member["work"], $member["id"], "update", "更新");
+}
+
+function show_delete($member)
+{
+  $error = get_error();
+  show_form($member["id"], $member["name"], $member["age"], $member["work"], $member["id"], "delete", "削除");
 }
 ?>
