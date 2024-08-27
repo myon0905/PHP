@@ -37,17 +37,17 @@ if(isset($_POST["status"])){
   }
   elseif($_POST["status"] == "update"){
     if(check_input($id, $name, $age, $work, $error) == false){
-      header("Location: syain_create.php?error={$error}");
+      header("Location: syain_update.php?error={$error}");
       exit();
     }
     if($db->idexist($id) == true){
       $error = "既に使用されているIDです";
-      header("Location: syain_create.php?error={$error}");
+      header("Location: syain_update.php?error={$error}");
       exit();
     }
     if($db->updatesyain($id, $name, $age, $work, $old_id) == false){
       $error = "DBエラー";
-      header("Location: syain_create.php?error={$error}");
+      header("Location: syain_update.php?error={$error}");
       exit();
     }
     header("Location: index.php");
@@ -56,7 +56,7 @@ if(isset($_POST["status"])){
   elseif($_POST["status"] == "delete"){
     if($db->deletesyain($id) == false){
       $error = "DBエラー";
-      header("Location: syain_create.php?error={$error}");
+      header("Location: syain_delete.php?error={$error}");
       exit();
     }
     header("Location: index.php");
