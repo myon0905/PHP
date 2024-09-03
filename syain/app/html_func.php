@@ -73,9 +73,12 @@ FORM;
 }
 
 function show_create()
-{
+{ 
+  $name = isset($_GET['name']) ? $_GET['name'] : '';
+  $age = isset($_GET['age']) ? $_GET['age'] : '';
+  $work = isset($_GET['work']) ? $_GET['work'] : '';
   $error = get_error();
-  show_form("","","","","","create","登録");
+  show_form("",$name,$age,$work,"","create","登録");
 }
 
 function show_syain($member)
@@ -111,7 +114,7 @@ function show_update($member)
 }
 
 function show_delete($member)
-{
+{ 
   $error = get_error();
   show_form($member["id"], $member["name"], $member["age"], $member["work"], $member["id"], "delete", "削除");
 }

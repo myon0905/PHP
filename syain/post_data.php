@@ -24,7 +24,7 @@ if(isset($_POST["status"])){
     }
     if($db->idexist($id) == true){
       $error = "既に使用されているIDです";
-      header("Location: syain_create.php?error={$error}");
+      header("Location: syain_create.php?error={$error}&name={$name}&age={$age}&work={$work}");
       exit();
     }
     if($db->createsyain($id, $name, $age, $work) == false){
@@ -40,8 +40,8 @@ if(isset($_POST["status"])){
       header("Location: syain_update.php?error={$error}");
       exit();
     }
-    if($db->idexist($id) == true){
-      $error = "既に使用されているIDです";
+     if($db->idexist($id) == true && $id !== $old_id){
+     $error = "既に使用されているIDです";
       header("Location: syain_update.php?error={$error}");
       exit();
     }
